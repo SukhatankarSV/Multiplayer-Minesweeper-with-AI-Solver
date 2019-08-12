@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    meta(name='google', content='notranslate')
+    meta(http-equiv='Content-Language', content='en')
+    link(rel='icon', type='image/png', href='/favicon.png')
+    link(rel='stylesheet', type='text/css', href='https://fonts.googleapis.com/css?family=Roboto+Mono')
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
+    link(rel='stylesheet', type='text/css', href='/materialize.min.css')
+    link(rel='stylesheet', type='text/css', href='/style.css')
+    script(src='/jquery.min.js')
+    script(src='/js.cookie.js')
+    script(src='/socket.io.js')
+    script(src='/materialize.min.js')
+    title Leader Board
+  body
+    .container
+      h1 Leader Board
+      table.highlight
+        thead
+          tr
+            th Player Name
+            th Score
+            th time
+        tbody
+          each score in Scores
+            tr
+              td= score[0]
+              td= score[1].points
+              td= score[1].time

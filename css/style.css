@@ -1,0 +1,135 @@
+#boardRow
+{
+	align: center;	
+	overflow: hidden;
+	display: table;
+}
+#public{
+	opacity:.8;
+}
+#board {
+	width: 842px;
+}
+.square 
+{	
+	width: 50px;
+	height: 50px;
+	background-color: #bababa;
+	border-radius: 0px !important;
+	border: 2px solid black;
+    display: block;
+	float: left;
+	text-align: center;
+	font-size: 32px;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	margin: 1px;
+	cursor: pointer;
+	transition: border-color 0.4s ease, background-color 0.4s ease;
+}
+
+/* chat room */
+.wrapper{
+	position: fixed;
+	right: 0px;
+	bottom: 0px;
+	padding: 0px;
+	margin: 0px;
+	border: 0.5px solid black;
+}
+.chat-box{
+	position: absolute;
+	right: 20px;
+	bottom: 0px;
+	background: white;
+	width: 300px;
+	border-radius: 5px 5px 0px 0px;
+	border: 0.5px solid black;
+	
+}
+.chat-head{
+	width: inherit;
+	height: 45px;
+	background: #2c3e50;
+	border-radius: 5px 5px 0px 0px;
+}
+.chat-head h6{
+	color: #e7ce3e;
+	padding: 6px;
+	display: inline-block;
+}
+.chat-head img{
+	cursor: pointer;
+	float: right;
+	width: 25px;
+	margin: 10px;
+}
+.chat-body{
+	height: 250px;
+	width: inherit;
+	overflow: auto;
+	margin-bottom: 45px;
+}
+.chat-text{
+	position: fixed;
+	bottom: 0px;
+	height: 45px;
+	width: inherit;
+}
+.chat-text textarea{
+	width: inherit;
+	height: inherit; 
+	box-sizing: border-box;
+	border: 1px solid #bdc3c7;
+	padding: 10px;
+	resize: none;
+}
+.chat-text textarea:active, .chat-text textarea:focus, .chat-text textarea:hover{
+	border-color: royalblue;
+}
+.msg-send{
+	background: #edf0d5;
+	margin: 10px 10px 10px auto;
+}
+.msg-receive{
+	background: #edf0d5;
+	margin: 10px auto 10px 10px;
+}
+.msg-send, .msg-receive{
+	width: 170px;
+	min-height: 60px;
+	padding: 5px 5px 5px 10px;
+	border-radius: 3px;
+	line-height: 30px;
+	position: relative;
+	color: black;
+	word-wrap:break-word;
+}
+.msg-receive:before{
+	content: '';
+	width: 0px;
+	height: 0px;
+	position: absolute;
+	border: 5px solid;
+	border-color: transparent #edf0d5 transparent transparent;
+	left: -10px;
+	top: 3px;
+}
+.msg-send:after{
+	content: '';
+	width: 0px;
+	height: 0px;
+	position: absolute;
+	border: 5px solid;
+	border-color: transparent transparent transparent #edf0d5;
+	right: -10px;
+	top: 3px;
+}
+.msg-receive:hover, .msg-send:hover{
+	opacity: .9;
+}
+
+.msg-displayName{
+	font-size: 12px !important;
+	margin-top: 0px;
+	text-shadow: 0 0 1px #000000;
+}

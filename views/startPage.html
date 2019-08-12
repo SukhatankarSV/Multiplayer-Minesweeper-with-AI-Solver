@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Mine Sweeper</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/StartPageCSS.css">
+
+  <script type="text/javascript">
+    function openHelpMenu(){
+    	document.getElementById("instructions").innerHTML = "<p  style = \"margin-left: 10%;\"> Instructions to play the game </p>";
+
+
+  	}
+  
+  </script>
+</head>
+<body style="overflow:hidden; margin:0">
+
+   <div class="jumbotron text-center b" style="background-image: url(../img/mines.png)">
+      <h1>Mine Sweeper</h1>
+   </div>
+
+   <div align="middle">
+      <!-- <button type="button" class="btn btn-success" onclick="location.href='./game.html'">Game</button> -->
+      
+   </div>
+ 
+   <div id='instructions'></div>
+   <div class="row">
+   	   <div class="col-sm-4"  style="margin-top: 10%";>
+   	   	   <div  align="middle">
+   	   	     <button onclick="document.getElementById('id01').style.display='block'" type="button" class="btn btn-success btn-lg btn-block " style = "margin-left: 18%" onclick="registerUser()">Manual Mode</button>
+   	   	    
+   	   	     <button type="button" class="btn btn-success btn-lg btn-block" style = "margin-left: 18%">AI Mode</button>
+   	   	   
+   	   	     <button type="button" class="btn btn-success btn-lg btn-block" style = "margin-left: 18%" data-toggle="modal" data-target="#myModal">Instructions</button>
+   	   	    
+   	       </div>
+   	   </div>
+   	    <div class="col-sm-8">
+   	        <!-- <img src="./images.jfif"  style="width:50%"> -->
+   	    </div>
+   </div>
+
+
+<!-- ----------------------Modal For Instructions--------------------------------------------------- -->
+
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Instructions</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+         
+        <!-- Modal body -->
+        <div class="modal-body">
+          <p>The purpose of the game is to open all the cells of the board which do not contain a bomb. You lose if you set off a bomb cell.</p>
+
+            <p>  Every non-bomb cell you open will tell you the total number of bombs in the eight neighboring cells. Once you are sure that a cell contains a bomb, you can right-click to put a flag it on it as a reminder. Once you have flagged all the bombs around an open cell, you can quickly open the remaining non-bomb cells by shift-clicking on the cell.</p>
+
+            <p>  To start a new game (Manual Mode), just click on 'Manual Mode' button.</p>
+            <p>  .</p>
+
+           <p>  Happy mine hunting!</p>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <!-- ----------------------Modal For Instructions--------------------------------------------------- -->
+
+
+<!-------------MODAL FOR Registering user --------------------------------------------------------------->
+  
+
+	<div id="id01" class="modal2">
+	  
+	  <form class="modal-content animate" action="/action_page.php">
+		
+		<div class="container">
+		  <label for="uname"><b>Username</b></label>
+		  <input type="text" placeholder="Enter Username" name="uname" required>
+
+			  <button type="submit">Play Game</button>
+		  <label>
+			<input type="checkbox" checked="checked" name="remember"> Remember me
+		  </label>
+		</div>
+
+		</div>
+	  </form>
+	</div>
+
+  
+  
+	<script type="text/javascript">
+  
+	var modal = document.getElementById('id01');
+
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+	
+	function registerUser()
+	{
+		var modal = document.getElementById('id01');
+
+		window.onclick = function(event)
+		{
+			if (event.target == modal)
+			{
+				modal.style.display = "none";
+			}
+		}
+	}
+  
+  </script>
+  
+  <!--------------------------------------------------------------------------------------------------------->
+  
+</body>
+</html>

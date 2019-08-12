@@ -1,0 +1,247 @@
+doctype html
+head
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  meta(charset='UTF-8')
+  meta(name='google', content='notranslate')
+  meta(http-equiv='Content-Language', content='en')
+  link(rel='icon', type='image/png', href='/favicon.png')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js')
+  link(rel='stylesheet', type='text/css', href='https://fonts.googleapis.com/css?family=Roboto+Mono')
+  link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+  link(rel='stylesheet', type='text/css', href='/materialize.min.css')
+  link(rel='stylesheet', type='text/css', href='/style.css')
+  script(src='/jquery.min.js')
+  script(src='/js.cookie.js')
+  script(src='/socket.io.js')
+  script(src='/materialize.min.js')
+  script(src='/client.js')
+  title AI Minesweeper
+  script.
+    function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+    x.className += " responsive";
+    } else {
+    x.className = "topnav";
+    }
+    }
+  style.
+    body {
+    margin: 0;
+    font-family: Trebuchet MS;
+    }
+    .topnav {
+    overflow: hidden;
+    background-color: #333;
+    }
+    .topnav a {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+
+    }
+    .topnav .icon {
+    display: none;
+    }
+    .topnav a:hover {
+    background-color: #ff9933;
+    color: black;
+    }
+    #game-logo {
+    font-size: 17px;
+    font-family: Tempus Sans ITC;
+    }
+    @media screen and (max-width: 800px) {
+    .topnav a:not(:first-child) {
+    display: none;
+    }
+    .topnav a.icon {
+    float: right;
+    display: block;
+    }
+    }
+    @media screen and (max-width: 800px) {
+    .topnav.responsive {
+    position: relative;
+    }
+    .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    }
+    .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+    clear: both;
+    }
+#myTopnav.topnav
+  a#game-logo.modal-trigger(title='Instructions',style='float:left !important;cursor:pointer;', data-position='left', data-toggle='modal', data-delay='50', data-target='myModal')
+    b
+      | MINESWEEPER
+      img(src='/logo.png', height='15', width='15')
+  a#new-game-button.modal-trigger(style='cursor:pointer;', data-position='left', data-delay='50', data-target='newGameModal') Customize
+  a(style='cursor:pointer;', data-position='left', data-delay='50', href='/games') Join Lobby
+  a#share-button.modal-trigger(style='cursor:pointer;', data-position='left', data-delay='50', data-target='shareModal') Share Lobby
+  a(style='cursor:pointer;', data-position='left', data-delay='50', href='/leader_board') Leaderboard
+  a#play-with-ai-button(style='cursor:pointer;', data-position='left', data-delay='50') Vs Bot
+  a.icon(href='javascript:void(0);', onclick='myFunction()')
+    i.fa.fa-bars
+.row
+  #boardRow.row
+    div(style='margin:10px;')
+      h5#display_name(contenteditable='true', style="display:inline; text-decoration:none;") Connecting...
+      span(style='cursor:pointer;') &#x270F;&#xFE0F;
+      br
+      label
+        input#revealMode.with-gap(type='radio', name='mode', checked='')
+        span &#x1F4A3;
+      label
+        input#flagMode.with-gap(type='radio', name='mode')
+        span &#x1F6A9;
+      br
+      h5(style='text-align:left;float:left;width:15%;')
+        | &#x1F6A9;:
+        span#flagCount
+      h5(style='float:left;width:5%;')
+      h5(style='text-align:left;float:left;width:15%;')
+        | &#x1F4A3;:
+        span#currentDimensions
+      h5(style='float:left;width:5%;')
+      button#hint.btn(title='Hint',style='background-color: #008CBA;float:left;width:15%;', type='button') &#x1F4A1;
+      h5(style='float:left;width:3%;')
+      button#autoSolve.btn(title='Auto-Solve',style='background-color:#4CAF50;float:left;width:15%;', type='button') &#x1F6E0;&#xFE0F;
+      h5(style='float:left;width:1%;')
+      h5#display(style='text-align:right;float:left;width:20%;')  00:00:00
+      br
+      br
+    #board(style='position:relative;')
+    h4(style='text-align:center;color:red;')
+      b scoreboard
+    #scoreboard
+    br
+.wrapper
+  .chat-box
+    .chat-head
+      h6 Chat Room &#x1F4AC
+      img(src='https://maxcdn.icons8.com/windows10/PNG/16/Arrows/angle_up-16.png', title='Expand Arrow', width='16')
+    #ChatRoomID.chat-body
+      .msg-insert
+      .chat-text
+        textarea(placeholder='Type something here... ')
+#newGameModal.modal
+  .modal-content
+    .container(style='display:block;')
+      h4 Select Level
+      label
+        input#beginnerMode.with-gap(type='radio', name='level')
+        span Beginner
+      label
+        input#intermediateMode.with-gap(type='radio', name='level')
+        span Intermediate
+      label
+        input#expertMode.with-gap(type='radio', name='level')
+        span Expert
+      label
+        input#customMode.with-gap(type='radio', name='level', checked='')
+        span Custom
+      .input-field
+        input#width(type='number', min='1', max='48', placeholder='Width of Grid')
+      .input-field
+        input#height(type='number', min='1', max='48', placeholder='Height of Grid')
+      .input-field
+        input#mines(type='number', min='0', max='2300', placeholder='Number of Mines')
+  .modal-footer
+    a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href='#') Cancel
+    a#submitSize.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#') Submit
+#shareModal.modal
+  .modal-content
+
+    .container
+      h4 Share game with others
+      .input-field
+        i.material-icons.prefix label
+        input#name(type='text', value='Unnamed game', maxlength='20')
+        label(for='name') Game name
+      .input-field
+        input#public(type='checkbox')
+        label(for='public') Show on publically game list
+  .modal-footer
+    a#submitShare.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#') Done
+#myModal.modal.fade
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      // Modal Header
+      .modal-header
+        h4.modal-title Instructions
+      // Modal body
+      .modal-body
+        p
+          | 1. The purpose of the game is to open all the cells of the board which do not contain a bomb. You lose if you set off a bomb cell.
+        p
+          | 2. Every non-bomb cell you open will tell you the total number of bombs in the eight neighboring cells. Once you are sure that a cell contains a bomb &#x1F4A3;, you can right-click to put a flag &#x1F6A9; it on it as a reminder. Once you have flagged
+          | all the bombs around an open cell, you can quickly open the remaining non-bomb cells by shift-clicking on the cell.
+        p
+          | 3. Click on 
+          i
+            b   
+          | &#x270F;&#xFE0F; to edit player name
+        p
+          | 4. 
+          i
+            b Customize
+          |  button is for selecting different difficulty levels (
+          i Beginner
+          | , 
+          i Intermediate
+          | , 
+          i Expert
+          | ) Or customizing by entering grid size manually
+        p
+          | 5. Click on 
+          i
+            b Join Lobby
+          |  to play multiplayer game
+        p
+          | 6. Click on 
+          i
+            b Share Lobby
+          |  to share your game online
+        p
+          | 7. Click on 
+          i
+            b Vs Bot
+          | , player can play against computer
+        p
+          | 8. Click on 
+          i
+            b Leaderboard 
+          | to see the high scores
+        p
+          | 9. 
+          i
+            b Hint 
+          | &#x1F4A1; Button will help you to get your next move
+        p
+          | 10. 
+          i
+            b Auto Solve 
+          | &#x1F6E0;&#xFE0F; Button will solve the game on its own
+        p
+          | 11. 
+          i
+            b Chat Room &#x1F4AC
+          |  is provided to chat amongst players in the same lobby  
+        p
+          | For more rules related information visit: 
+          a(href='https://en.wikipedia.org/wiki/Microsoft_Minesweeper') https://en.wikipedia.org/wiki/Microsoft_Minesweeper
+        p
+          b
+            i Happy Mine Hunting!
+      // Modal footer
+      .modal-footer
