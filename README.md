@@ -16,3 +16,19 @@ Web-based Multiplayer Minesweeper game with AI solver
 1) Node.js - download it from https://nodejs.org/en/
 2) Install package dependencies in package.json using "npm install"
 3) Deploy on Cloud Platform(e.g Heroku) to launch it as a web-app
+4) It will be running on http://localhost:8080 by default. You can edit the port number.
+
+
+- Screenshots
+
+
+
+
+
+
+
+
+
+
+
+
